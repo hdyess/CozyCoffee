@@ -5,26 +5,27 @@ import java.util.LinkedHashMap;
 
 public class Item {
 
-	//fields
 	String name;
 	double basePrice;
-	ArrayList<Item> availableOptions;
-	ArrayList<Item> addedOptions;
+	LinkedHashMap<String, Item> availableOptions;
+	LinkedHashMap<String, Item> addedOptions;
 
-	//constructors
+
 	public Item(String name) {
 		this.name = name;
 		this.basePrice = 0.00;
-		this.availableOptions = new ArrayList<>();
-		this.addedOptions = new ArrayList<>();
+		this.availableOptions = new LinkedHashMap<>();
+		this.addedOptions = new LinkedHashMap<>();
 	}
 
-	public Item(String name, Double basePrice) {
-		this.name = name;
-		this.basePrice = basePrice;
-	}
+//	public Item(String name, Double basePrice) {
+//		this.name = name;
+//		this.basePrice = basePrice;
+//		this.availableOptions = new LinkedHashMap<>();
+//		this.addedOptions = new LinkedHashMap<>();
+//	}
 
-	//methods
+
 	public String getName() {
 		return name;
 	}
@@ -32,24 +33,41 @@ public class Item {
 	public double getBasePrice() {
 		return basePrice;
 	}
-
 	public void setBasePrice(double BasePrice) {
 		basePrice = BasePrice;
 	}
 
+	public void addAvailableOption(String itemName) {
+		availableOptions.putIfAbsent(itemName, Menu.getFromMenu(itemName));
+		availableOptions.putIfAbsent(itemName, Menu.getFromAll(itemName));
+		if (availableOptions.get(itemName) == null) {
+			availableOptions.put(itemName, new Item(itemName));
+		}
+	}
+	public void removeAvailableOption(String itemName) {
+		availableOptions.remove(itemName);
+
+		//		for (String n : availableOptions.keySet()) {
+//			if (n.equalsIgnoreCase(itemName)) {
+//				availableOptions.remove(itemName);
+//				break;
+//			}
+//		}
+	}
+
 	public void addOption(String itemName) {
-
+		 if (availableOptions.containsKey(itemName)) {
+			 addedOptions.putIfAbsent(itemName, availableOptions.get(itemName));
+		 }
 	}
-
 	public void removeOption(String itemName) {
-
+		addedOptions.remove(itemName);
 	}
 
-	public ArrayList<Item> getAvailableOptions() {
+	public LinkedHashMap<String, Item> getAvailableOptions() {
 		return availableOptions;
 	}
-
-	public ArrayList<Item> getAddedOptions() {
+	public LinkedHashMap<String, Item> getAddedOptions() {
 		return addedOptions;
 	}
 
@@ -59,7 +77,7 @@ public class Item {
 		}
 
 		double returnPrice = basePrice;
-		for (Item i : addedOptions) {
+		for (Item i : addedOptions.values()) {
 				returnPrice += i.getTotalPrice();
 		}
 

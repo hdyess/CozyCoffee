@@ -1,6 +1,5 @@
 package com.pluralsight;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 public class Menu {
@@ -38,19 +37,33 @@ public class Menu {
 
 
 	//full item directory
-	private static LinkedHashMap<String, Item> allItems;
+	private static LinkedHashMap<String, Item> allItems = new LinkedHashMap<>();
 	//menu as it is shown to the user, with items containing option items
-	private static ArrayList<Item> menuItems;
+	private static LinkedHashMap<String, Item> menuItems = new LinkedHashMap<>();
 
+	public static LinkedHashMap<String, Item> getAllItems() {
+		return allItems;
+	}
+	public static void addToAllItems(Item item) {
+		allItems.put(item.getName(), item);
+	}
 
-	public static Item getItem(String itemName) {
-		try {
-			return allItems.get(itemName);
-		} catch (Exception ex) {
-			System.out.println(ex);
-			//todo: bad behavior if allItems is empty?
-			return allItems.firstEntry().getValue();
-		}
+	public static LinkedHashMap<String, Item> getMenuItems() {
+		return menuItems;
+	}
+	public static void addToMenuItems(Item item) {
+		menuItems.put(item.getName(), item);
+	}
+
+	public static Item getFromAll(String itemName) {
+		return allItems.get(itemName);
+
+//		try {
+//		} catch (Exception ex) {
+//			System.out.println(ex);
+//			//todo: bad behavior if allItems is empty?
+//			return allItems.firstEntry().getValue();
+//		}
 
 //		for (String n : allItems.keySet()) {
 //			if (n.equalsIgnoreCase(itemName)) {
@@ -59,13 +72,9 @@ public class Menu {
 //		}
 //		return allItems.firstEntry().getValue();
 	}
-
-	public static void addToAllItems(Item item) {
-		allItems.put(item.getName(), item);
+	public static Item getFromMenu(String itemName) {
+		return menuItems.get(itemName);
 	}
-
-
-
 
 
 }
