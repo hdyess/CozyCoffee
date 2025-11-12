@@ -25,25 +25,46 @@ public class Menu {
 	I will do this if I have time.
 	*/
 
+	/*
+	update:
+	This is so catastrophic i'm going to have to handle this previous todo.
+	Things just become 1000x times simpler if I can just define the
+	different options for an item and then define the prices some other way.
+	I don't even know how yet it just has to happen cause this is otherwise
+	impossible to think through and make clean.
+	I should have just coded this worse and given myself more time.
+	Only one way to learn I guess.
+	*/
+
 
 	//full item directory
-	private static ArrayList<Item> allItems;
+	private static LinkedHashMap<String, Item> allItems;
 	//menu as it is shown to the user, with items containing option items
 	private static ArrayList<Item> menuItems;
 
 
 	public static Item getItem(String itemName) {
-		for (Item i : allItems) {
-			if (i.getName().equalsIgnoreCase(itemName)) {
-				return i;
-			}
+		try {
+			return allItems.get(itemName);
+		} catch (Exception ex) {
+			System.out.println(ex);
+			//todo: bad behavior if allItems is empty?
+			return allItems.firstEntry().getValue();
 		}
-		return null;
+
+//		for (String n : allItems.keySet()) {
+//			if (n.equalsIgnoreCase(itemName)) {
+//				return allItems.get(itemName);
+//			}
+//		}
+//		return allItems.firstEntry().getValue();
 	}
 
 	public static void addToAllItems(Item item) {
-		allItems.add(item);
+		allItems.put(item.getName(), item);
 	}
+
+
 
 
 

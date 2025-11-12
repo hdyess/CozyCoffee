@@ -8,10 +8,17 @@ public class Item {
 	//fields
 	String name;
 	double basePrice;
-	LinkedHashMap<Item, Double> availableOptions;
-	LinkedHashMap<Item, Double> addedOptions;
+	ArrayList<Item> availableOptions;
+	ArrayList<Item> addedOptions;
 
-	//constructor
+	//constructors
+	public Item(String name) {
+		this.name = name;
+		this.basePrice = 0.00;
+		this.availableOptions = new ArrayList<>();
+		this.addedOptions = new ArrayList<>();
+	}
+
 	public Item(String name, Double basePrice) {
 		this.name = name;
 		this.basePrice = basePrice;
@@ -31,19 +38,18 @@ public class Item {
 	}
 
 	public void addOption(String itemName) {
-		Item itemToAdd = Menu.getItem(itemName);
-		this.addedOptions.putIfAbsent(itemToAdd, itemToAdd.getBasePrice());
+
 	}
 
 	public void removeOption(String itemName) {
 
 	}
 
-	public LinkedHashMap<Item, Double> getAvailableOptions() {
+	public ArrayList<Item> getAvailableOptions() {
 		return availableOptions;
 	}
 
-	public LinkedHashMap<Item, Double> getAddedOptions() {
+	public ArrayList<Item> getAddedOptions() {
 		return addedOptions;
 	}
 
@@ -53,7 +59,7 @@ public class Item {
 		}
 
 		double returnPrice = basePrice;
-		for (Item i : addedOptions.keySet()) {
+		for (Item i : addedOptions) {
 				returnPrice += i.getTotalPrice();
 		}
 
