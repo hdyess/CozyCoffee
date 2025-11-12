@@ -8,7 +8,7 @@ public class Item {
 	//fields
 	String name;
 	double basePrice;
-	ArrayList<Item> availableOptions;
+	LinkedHashMap<Item, Double> availableOptions;
 	LinkedHashMap<Item, Double> addedOptions;
 
 	//constructor
@@ -24,6 +24,10 @@ public class Item {
 
 	public void setBasePrice(double BasePrice) {
 		basePrice = BasePrice;
+	}
+
+	public void addOption() {
+		
 	}
 
 	public ArrayList<Item> getAvailableOptions() {
