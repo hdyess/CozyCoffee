@@ -1,6 +1,7 @@
 package com.pluralsight;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 public class Item {
 
@@ -8,14 +9,12 @@ public class Item {
 	String name;
 	double basePrice;
 	ArrayList<Item> availableOptions;
-	ArrayList<Item> addedOptions;
-	boolean priceChanges;
+	LinkedHashMap<Item, Double> addedOptions;
 
 	//constructor
-	public Item(String name, Double basePrice, boolean priceChanges) {
+	public Item(String name, Double basePrice) {
 		this.name = name;
 		this.basePrice = basePrice;
-		this.priceChanges = priceChanges;
 	}
 
 	//methods
@@ -44,6 +43,7 @@ public class Item {
 		for (Item i : addedOptions) {
 				returnPrice += i.getTotalPrice();
 		}
+
 		return returnPrice;
 	}
 
