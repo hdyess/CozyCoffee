@@ -5,28 +5,28 @@ import java.util.ArrayList;
 
 public class Basket {
 
-	ArrayList<Item> inBasket;
-	double basketPrice;
+	private static ArrayList<Item> inBasket;
 
 
 	public Basket() {
-		this.basketPrice = 0;
 		this.inBasket = new ArrayList<>();
 	}
 
 
 	public void addItem(Item item) {
-		basketPrice += item.getPrice();
 		inBasket.add(item);
 	}
 
 	public void removeItem(Item item) {
-		basketPrice -= item.getPrice();
 		inBasket.remove(item);
 	}
 
 	public double getTotalPrice() {
-		return basketPrice;
+		double totalBasketPrice = 0.00;
+		for (Item i : inBasket) {
+			totalBasketPrice += i.getTotalPrice();
+		}
+		return totalBasketPrice;
 	}
 
 	public ArrayList<Item> getInBasket() {

@@ -7,33 +7,21 @@ import java.io.FileWriter;
 
 public class FileManager {
 
-	public static Item loadItem(String csvName) {
-
+	public static void loadItemsToMenu(String csvName) {
 		try {
 
 			FileReader fileReader = new FileReader(csvName);
 			BufferedReader buffReader = new BufferedReader(fileReader);
-			String[] initLine = buffReader.readLine().split("\\|");
-			Item returnItem = new Item(initLine[0], initLine[1], initLine[2]);
-
 			String line;
+
 			while ((line = buffReader.readLine()) != null) {
-
 				String[] lineParsed = line.split("\\|");
-				//todo: i swear this can be better i just don't know how
-				Item.addVehicle(new Vehicle(Integer.parseInt(lineParsed[0]), Integer.parseInt(lineParsed[1]), lineParsed[2], lineParsed[3], lineParsed[4], lineParsed[5], Integer.parseInt(lineParsed[6]), Double.parseDouble(lineParsed[7])));
-
+				Menu.addToAllItems(new Item(lineParsed[0], Double.parseDouble(lineParsed[1]) ) );
 			}
 
-			return returnItem;
-
 		} catch (Exception ex) {
-
-			System.out.println("Error occurred, check your dealership.csv file.");
-
+			System.out.printf("Error occurred, check your %s file.", csvName);
 		}
-
-		return new Item("error", 0.0);
 
 	} // loadItem
 

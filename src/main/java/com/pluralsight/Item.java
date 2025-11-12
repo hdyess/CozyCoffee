@@ -22,19 +22,28 @@ public class Item {
 		return name;
 	}
 
+	public double getBasePrice() {
+		return basePrice;
+	}
+
 	public void setBasePrice(double BasePrice) {
 		basePrice = BasePrice;
 	}
 
-	public void addOption() {
-		
+	public void addOption(String itemName) {
+		Item itemToAdd = Menu.getItem(itemName);
+		this.addedOptions.putIfAbsent(itemToAdd, itemToAdd.getBasePrice());
 	}
 
-	public ArrayList<Item> getAvailableOptions() {
+	public void removeOption(String itemName) {
+
+	}
+
+	public LinkedHashMap<Item, Double> getAvailableOptions() {
 		return availableOptions;
 	}
 
-	public ArrayList<Item> getAddedOptions() {
+	public LinkedHashMap<Item, Double> getAddedOptions() {
 		return addedOptions;
 	}
 
@@ -44,7 +53,7 @@ public class Item {
 		}
 
 		double returnPrice = basePrice;
-		for (Item i : addedOptions) {
+		for (Item i : addedOptions.keySet()) {
 				returnPrice += i.getTotalPrice();
 		}
 
