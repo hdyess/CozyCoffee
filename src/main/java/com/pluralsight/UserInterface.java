@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 public class UserInterface {
 
+
+
 	private static ArrayList<Window> topWinRow = new ArrayList<>();
 	private static ArrayList<Window> bottomWinRow = new ArrayList<>();
 
@@ -85,6 +87,9 @@ public class UserInterface {
 	public static void removeBottomWindow(int orderOfWindow) {
 		bottomWinRow.remove(orderOfWindow);
 	}
+
+
+
 
 
 
