@@ -9,50 +9,16 @@ public class Main {
 		Menu menu = new Menu();
 		menu.initProducts();
 
-		ConsoleHelper.consoleClear();
+		UserInterface.addTopWindow(new Window(70, 20));
+		UserInterface.addTopWindow(new Window(50, 20));
+		UserInterface.addBottomWindow(new Window(120, 2));
 
-		UserInterface.addTopWindow(new Window(50, 10));
-		UserInterface.addTopWindow(new Window(50, 10));
-
-		UserInterface.getTopWinRow().get(0).printToNextRow("Hello world!");
-		UserInterface.getTopWinRow().get(0).printToNextRow("Hello world!");
-		UserInterface.getTopWinRow().get(0).printToNextRow("Hello world!");
-		UserInterface.getTopWinRow().get(0).printToNextRow("Hello world!");
-		UserInterface.getTopWinRow().get(0).printToNextRow("Hello world!");
-		UserInterface.getTopWinRow().get(0).printToNextRow("Hello world!");
-		UserInterface.getTopWinRow().get(0).printToNextRow("Hello world!");
-		UserInterface.getTopWinRow().get(0).printToNextRow("Hello world!");
-		UserInterface.getTopWinRow().get(0).printToNextRow("Hello world!");
-
-		UserInterface.getTopWinRow().get(1).printToNextRow("Hello world!");
-		UserInterface.getTopWinRow().get(1).printToNextRow("Hello world!");
-
+		for(String s : menu.getProductNames() ) {
+			UserInterface.getTopWinRow().get(1).printToNextRow(s);
+		}
 
 		UserInterface.displayWindows(UserInterface.getTopWinRow());
-
-		UserInterface.getTopWinRow().get(0).clearRows();
-		UserInterface.getTopWinRow().get(1).clearRows();
-
-		UserInterface.displayWindows(UserInterface.getTopWinRow());
-
-		UserInterface.getTopWinRow().get(0).clearRows();
-		UserInterface.getTopWinRow().get(1).clearRows();
-
-		UserInterface.getTopWinRow().get(0).printToNextRow("Hello world!");
-		UserInterface.getTopWinRow().get(0).printToNextRow("Hello world!");
-
-		UserInterface.displayWindows(UserInterface.getTopWinRow());
-
-		UserInterface.getTopWinRow().get(0).clearRows();
-		UserInterface.getTopWinRow().get(1).clearRows();
-
-		UserInterface.getTopWinRow().get(0).printToNextRow("Hello world!");
-		UserInterface.getTopWinRow().get(0).printToNextRow("Hello world!");
-
-		UserInterface.displayWindows(UserInterface.getTopWinRow());
-
-		UserInterface.getTopWinRow().get(0).clearRows();
-		UserInterface.getTopWinRow().get(1).clearRows();
+		UserInterface.displayWindows(UserInterface.getBottomWinRow());
 
 
 
