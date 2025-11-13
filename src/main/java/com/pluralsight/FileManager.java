@@ -1,13 +1,12 @@
 package com.pluralsight;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 public class FileManager {
+
+	//most of this is just to avoid hard coding the items and prices. BAD IDEA
 
 	public static void loadItemsToMenu(String csvName) {
 		try {
@@ -27,9 +26,24 @@ public class FileManager {
 			for(String l : lines) {
 				String[] lineSplit = l.split("\\|");
 				Item newMenuItem = Menu.getFromAll(lineSplit[0]);
+				File priceFile;
+				ArrayList<Double> prices = new ArrayList<>();
+				//todo:this seems bad making a new object every time
+				if ( (priceFile = new File(lineSplit[0] + ".csv")).isFile() ) {
+					System.out.printf("Price info for %s found.\n", lineSplit[0]);
+					prices = loadPrices(lineSplit[0] + ".csv");
+				} else {
+					System.out.printf("No price info found for %s.\n", lineSplit[0]);
+				}
 
 				for (int j = 1; j < lineSplit.length; j++) {
-					newMenuItem.addAvailableOption(lineSplit[j]);
+					//todo:this condition is checked every single loop which is
+					//unnecessary but who cares at ths point
+					if (!prices.isEmpty()) {
+						newMenuItem.addAvailableOption(lineSplit[j]);
+					}
+					newMenuItem.getAvailableOptions().get(lineSplit[j]).setBasePrice(prices.get(j));
+
 				}
 
 				Menu.addToMenuItems(newMenuItem);
@@ -39,11 +53,39 @@ public class FileManager {
 
 		} catch (Exception ex) {
 			System.out.printf("Error occurred, check your %s file.\n", csvName);
+			System.out.println(ex);
 		}
 
 	} // loadAllItems
 
+	public static ArrayList<Double> loadPrices(String csvName) {
 
+		try {
+			FileReader fileReader = new FileReader(csvName);
+			System.out.println("File \"" + csvName + "\" successfully opened.");
+			BufferedReader buffReader = new BufferedReader(fileReader);
+			String line;
+			//size|size5|size8|size12|size16
+			//milk|milkWhole|milkOat|milkAlmond
+			//temp|tempHot|tempCold
+			//extrashots|oneShot|twoShot|threeShot|fourShot
+			//latte|size|milk|temp|extrashots
+
+			while ((line = buffReader.readLine()) != null) {
+				ArrayList<Double> itemPriceList = new ArrayList<>();
+				Menu.addToAllItems(new Item(line.split("\\|")[0]));
+				System.out.println("Item loaded: " + line.split("\\|")[0]);
+			}
+
+		} catch (Exception ex) {
+			System.out.printf("Error occurred, check your %s file.\n", csvName);
+			System.out.println(ex);
+		}
+
+
+	}
+
+}
 
 
 
@@ -75,4 +117,4 @@ public class FileManager {
 //
 //	} // saveDealership
 
-}
+
