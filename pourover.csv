@@ -1,7 +1,8 @@
-5oz|2.00|size|false|true|true
+8oz|5.19|size|false|true|true
+12oz|5.99|size|false|true|true
+16oz|7.58|size|false|true|true
 extrashots|0.85|extrashots|true|false|true
-yeswater|0.00|water|false|true|true
-nowater|0.00|water|false|true|true
+hot|0.00|temp|false|true|true
 whole|0.00|milk|false|false|true
 oat|0.00|milk|false|false|true
 almond|0.00|milk|false|false|true

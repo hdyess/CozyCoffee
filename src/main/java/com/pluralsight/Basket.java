@@ -2,35 +2,35 @@ package com.pluralsight;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 public class Basket {
 
-	private ArrayList<Product> inBasket;
+	LinkedHashMap<String, Product> inBasket;
 
 
 	public Basket() {
-		this.inBasket = new ArrayList<>();
+		this.inBasket = new LinkedHashMap<>();
 	}
 
 
 	public void addProduct(Product product) {
-		inBasket.add(product);
+		inBasket.put(product.getName(), product);
+	}
+	public void removeProduct(Product product) {
+		inBasket.remove(product.getName(), product);
 	}
 
-	public void removeProduct(Product product) {
-		inBasket.remove(product);
+	public LinkedHashMap<String, Product> getInBasket() {
+		return inBasket;
 	}
 
 	public double getTotalPrice() {
 		double totalBasketPrice = 0.00;
-		for (Product i : inBasket) {
+		for (Product i : inBasket.values()) {
 			totalBasketPrice += i.getTotalPrice();
 		}
 		return totalBasketPrice;
-	}
-
-	public ArrayList<Product> getInBasket() {
-		return inBasket;
 	}
 
 

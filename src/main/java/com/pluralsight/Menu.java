@@ -3,41 +3,43 @@ package com.pluralsight;
 import java.lang.reflect.Array;
 import java.util.LinkedHashMap;
 import java.util.ArrayList;
+import java.util.Set;
 
 public class Menu {
 
-	ArrayList<Product> menuItems;
+	LinkedHashMap<String, Product> productMap;
 
-	public Menu() {
-		this.menuItems = new ArrayList<>();
-	}
+
+	public Menu() {}
+
 
 	public void initProducts() {
 		ArrayList<String> productNames = FileManager.getProductNames("products.csv");
-		LinkedHashMap<String, Product> returnList = new LinkedHashMap<>();
+		this.productMap = new LinkedHashMap<>();
 
-//		returnList.put("latte", new Product("latte"));
-//		returnList.get("latte").addAvailableOption(new Option("8oz", 4.99, "milk", false, true, true));
-//		returnList.get("latte").addAvailableOption(new Option("12oz", 5.99, "milk", false, true, true));
-//		returnList.get("latte").addAvailableOption(new Option("16oz", 6.99, "milk", false, true, true));
-//		returnList.get("latte").addAvailableOption(new Option("hot", 0.00, "temp", false, true, true ));
-//		returnList.get("latte").addAvailableOption(new Option("cold", 0.00, "temp", false, true, true));
-//		returnList.get("latte").addAvailableOption(new Option("whole", 0.00, "milkType", false, true, true));
-//		returnList.get("latte").addAvailableOption(new Option("oat", 0.00, "milkType", false, true, true));
-//		returnList.get("latte").addAvailableOption(new Option("almond", 0.25, "milkType", false, true, true));
-//		returnList.get("latte").addAvailableOption(new Option("whole", 0.00, "milkType", false, true, true));
-
-		//loads menuItems with new product of name from products.csv
+		//loads productList with new product of name from products.csv
+		//todo: array list might be better instead of making a local hash map
+		//but then i have to iterate over it so idk
 		for(String name : productNames) {
-			returnList.put(name, new Product(name));
+			this.productMap.put(name, new Product(name));
 			//adds all options in the name + ".csv" file, if it exists
 			if (FileManager.csvExists(name)) {
 				for (Option o : FileManager.getOptionsFromFile(name + ".csv")) {
-					returnList.get("name").addAvailableOption(o);
+					this.productMap.get(name).addAvailableOption(o);
 				}
 			}
 		}
 	}
+
+	public Set<String> getProductNames() {
+		return productMap.keySet();
+	}
+
+	public Product getProduct(String productName) {
+		return productMap.get(productName);
+	}
+
+
 
 	/*
 	Currently building menu such that everything is an item, and every
