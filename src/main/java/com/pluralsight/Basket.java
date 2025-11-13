@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Basket {
 
-	private static ArrayList<Item> inBasket;
+	private ArrayList<Product> inBasket;
 
 
 	public Basket() {
@@ -13,12 +13,12 @@ public class Basket {
 	}
 
 
-	public void addItem(Item item) {
-		inBasket.add(item);
+	public void addProduct(Product product) {
+		inBasket.add(product);
 	}
 
-	public void removeItem(Item item) {
-		inBasket.remove(item);
+	public void removeProduct(Product product) {
+		inBasket.remove(product);
 	}
 
 	public double getTotalPrice() {
@@ -29,10 +29,9 @@ public class Basket {
 		return totalBasketPrice;
 	}
 
-	public ArrayList<Item> getInBasket() {
+	public ArrayList<Product> getInBasket() {
 		return inBasket;
 	}
-
 
 
 }

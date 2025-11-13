@@ -1,9 +1,31 @@
 package com.pluralsight;
 
 import java.util.LinkedHashMap;
+import java.util.ArrayList;
 
 public class Menu {
 
+	ArrayList<Product> menuItems;
+
+	//this is all hard coded and that's basically what I was trying to avoid
+	//before rewriting everything
+	public void initProducts() {
+		LinkedHashMap<String, Product> returnList = new LinkedHashMap();
+		//this is the worst code ever written
+		//i hope a future employer doesn't see this
+		returnList.put("latte", new Product("latte"));
+		returnList.get("latte").addAvailableOption(new Option("8oz", 4.99, "milk", false, true, true));
+		returnList.get("latte").addAvailableOption(new Option("12oz", 5.99, "milk", false, true, true));
+		returnList.get("latte").addAvailableOption(new Option("16oz", 5.99, "milk", false, true, true));
+		returnList.get("latte").addAvailableOption(new Option("hot", 0.00, "temp", false, true, true ));
+		returnList.get("latte").addAvailableOption(new Option("cold", 0.00, "temp", false, true, true));
+		returnList.get("latte").addAvailableOption(new Option("whole", 0.00, "milkType", false, true, true));
+		returnList.get("latte").addAvailableOption(new Option("oat", 0.00, "milkType", false, true, true));
+		returnList.get("latte").addAvailableOption(new Option("almond", 0.25, "milkType", false, true, true));
+		returnList.get("latte").addAvailableOption(new Option("whole", 0.00, "milkType", false, true, true));
+		
+
+	}
 
 	/*
 	Currently building menu such that everything is an item, and every
@@ -35,7 +57,7 @@ public class Menu {
 	Only one way to learn I guess.
 	*/
 
-
+/*
 	//full item directory
 	private static LinkedHashMap<String, Item> allItems = new LinkedHashMap<>();
 	//menu as it is shown to the user, with items containing option items
@@ -75,6 +97,9 @@ public class Menu {
 	public static Item getFromMenu(String itemName) {
 		return menuItems.get(itemName);
 	}
+
+*/
+
 
 
 }
