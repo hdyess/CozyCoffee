@@ -9,6 +9,11 @@ public class Main {
 		Menu menu = new Menu();
 		menu.initProducts();
 
+		UserInterface.addTopWindow(new Window(100, 100));
+		UserInterface.addTopWindow(new Window(100, 100));
+
+		UserInterface.displayWindows(UserInterface.topWinRow);
+
 
 		//menu.getProduct("latte").getAvailableOptions().forEach(option -> System.out.println(option.getName()));
 

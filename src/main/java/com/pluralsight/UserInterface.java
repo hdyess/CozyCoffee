@@ -5,21 +5,60 @@ import java.util.ArrayList;
 
 public class UserInterface {
 
-	private static ArrayList<Window> winRow1;
-	private static ArrayList<Window> winRow2;
+	public static ArrayList<Window> topWinRow = new ArrayList<>();
+	public static ArrayList<Window> bottomWinRow = new ArrayList<>();
 
 	//for now everything assumes windows within a row are of equal height
-	public static void displayWindows() {
+	//I feel like there's some sorta table data structure that I could use here but i am
+	//too lazy and pressed for time to figure it out
+	public static void displayWindows(ArrayList<Window> winRow) {
 		ArrayList<StringBuilder> fullDisplayLines = new ArrayList<>();
-		for (Window w : winRow1) {
-
+		for (int i = 0; i < winRow.getFirst().getHeight(); i++) {
+			fullDisplayLines.add(new StringBuilder());
 		}
-
+		for (Window w : winRow) {
+			ArrayList<String> winRows = w.getRows();
+			for (int i = 0; i < w.getHeight(); i++) {
+				fullDisplayLines.get(i).append(winRows.get(i));
+			}
+		}
 		fullDisplayLines.forEach(stringBuilder -> System.out.println(stringBuilder.toString()));
+	}
 
+	public static ArrayList<Window> getTopWinRow() {
+		return topWinRow;
+	}
+	public static void addTopWindow(Window window) {
+		topWinRow.add(window);
+	}
+	public static void removeTopWindow(int orderOfWindow) {
+		topWinRow.remove(orderOfWindow);
+	}
+
+	public static void displayTopRow() {
+		ArrayList<StringBuilder> fullDisplayLines = new ArrayList<>();
+		for (int i = 0; i < topWinRow.getFirst().getHeight(); i++) {
+			fullDisplayLines.add(new StringBuilder());
+		}
+		for (Window w : topWinRow) {
+			ArrayList<String> winRows = w.getRows();
+			for (int i = 0; i < w.getHeight(); i++) {
+				fullDisplayLines.get(i).append(winRows.get(i));
+			}
+		}
+		fullDisplayLines.forEach(stringBuilder -> System.out.println(stringBuilder.toString()));
 	}
 
 
+	public static ArrayList<Window> getBottomWinRow() {
+		return bottomWinRow;
+	}
+	public static void addBottomWindow(Window window) {
+		bottomWinRow.add(window);
+	}
+	public static void removeBottomWindow(int orderOfWindow) {
+		bottomWinRow.remove(orderOfWindow);
+	}
 
 
 
