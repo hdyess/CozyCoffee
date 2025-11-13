@@ -1,5 +1,6 @@
 package com.pluralsight;
 
+import java.lang.reflect.Array;
 import java.util.LinkedHashMap;
 import java.util.ArrayList;
 
@@ -7,24 +8,35 @@ public class Menu {
 
 	ArrayList<Product> menuItems;
 
-	//this is all hard coded and that's basically what I was trying to avoid
-	//before rewriting everything
-	public void initProducts() {
-		LinkedHashMap<String, Product> returnList = new LinkedHashMap();
-		//this is the worst code ever written
-		//i hope a future employer doesn't see this
-		returnList.put("latte", new Product("latte"));
-		returnList.get("latte").addAvailableOption(new Option("8oz", 4.99, "milk", false, true, true));
-		returnList.get("latte").addAvailableOption(new Option("12oz", 5.99, "milk", false, true, true));
-		returnList.get("latte").addAvailableOption(new Option("16oz", 5.99, "milk", false, true, true));
-		returnList.get("latte").addAvailableOption(new Option("hot", 0.00, "temp", false, true, true ));
-		returnList.get("latte").addAvailableOption(new Option("cold", 0.00, "temp", false, true, true));
-		returnList.get("latte").addAvailableOption(new Option("whole", 0.00, "milkType", false, true, true));
-		returnList.get("latte").addAvailableOption(new Option("oat", 0.00, "milkType", false, true, true));
-		returnList.get("latte").addAvailableOption(new Option("almond", 0.25, "milkType", false, true, true));
-		returnList.get("latte").addAvailableOption(new Option("whole", 0.00, "milkType", false, true, true));
-		
+	public Menu() {
+		this.menuItems = new ArrayList<>();
+	}
 
+	public void initProducts() {
+		ArrayList<String> productNames = FileManager.getProductNames("products.csv");
+		LinkedHashMap<String, Product> returnList = new LinkedHashMap<>();
+
+//		returnList.put("latte", new Product("latte"));
+//		returnList.get("latte").addAvailableOption(new Option("8oz", 4.99, "milk", false, true, true));
+//		returnList.get("latte").addAvailableOption(new Option("12oz", 5.99, "milk", false, true, true));
+//		returnList.get("latte").addAvailableOption(new Option("16oz", 6.99, "milk", false, true, true));
+//		returnList.get("latte").addAvailableOption(new Option("hot", 0.00, "temp", false, true, true ));
+//		returnList.get("latte").addAvailableOption(new Option("cold", 0.00, "temp", false, true, true));
+//		returnList.get("latte").addAvailableOption(new Option("whole", 0.00, "milkType", false, true, true));
+//		returnList.get("latte").addAvailableOption(new Option("oat", 0.00, "milkType", false, true, true));
+//		returnList.get("latte").addAvailableOption(new Option("almond", 0.25, "milkType", false, true, true));
+//		returnList.get("latte").addAvailableOption(new Option("whole", 0.00, "milkType", false, true, true));
+
+		//loads menuItems with new product of name from products.csv
+		for(String name : productNames) {
+			returnList.put(name, new Product(name));
+			//adds all options in the name + ".csv" file, if it exists
+			if (FileManager.csvExists(name)) {
+				for (Option o : FileManager.getOptionsFromFile(name + ".csv")) {
+					returnList.get("name").addAvailableOption(o);
+				}
+			}
+		}
 	}
 
 	/*
@@ -33,7 +45,7 @@ public class Menu {
 
 	EX: latteSize8 and latteSize 12 for different prices of 8 and 12 oz latte
 
-	Items are defined based on allItems.csv
+	Items are defined based on products.csv
 	Item relationships are defined based on menuItems.csv
 
 	This sucks because it means I have to manually write these items for every

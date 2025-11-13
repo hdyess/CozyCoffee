@@ -1,0 +1,17 @@
+8oz|4.99|size|false|true|true
+12oz|5.99|size|false|true|true
+16oz|6.99|size|false|true|true
+hot|0.00|temp|false|true|true
+cold|0.00|temp|false|true|true
+whole|0.00|milk|false|true|true
+oat|0.00|milk|false|true|true
+almond|0.00|milk|false|true|true
+caramel|0.60|syrup|true|false|false|
+vanilla|0.60|syrup|true|false|false|
+chocolate|0.60|syrup|true|false|false|
+cinnamon|0.60|syrup|true|false|false|
+cardamom|0.60|syrup|true|false|false|
+hazelnut|0.60|syrup|true|false|false|
+peppermint|0.60|syrup|true|false|false|
+maple|0.60|syrup|true|false|false|
+pumpkin|0.60|syrup|true|false|false|

@@ -6,8 +6,7 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		FileManager.loadItemsToMenu("menuItems.csv");
-		System.out.println(Menu.getFromMenu("flavor").getAvailableOptions().get("caramel").getBasePrice());
+		Menu.
 
 
 	}

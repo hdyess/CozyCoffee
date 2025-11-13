@@ -8,8 +8,52 @@ import java.util.LinkedHashMap;
 
 public class FileManager {
 
+	public static ArrayList<Option> getOptionsFromFile(String csvName) {
+		ArrayList<Option> options = new ArrayList<>();
+		try {
+			FileReader fileReader = new FileReader(csvName);
+			BufferedReader buffReader = new BufferedReader(fileReader);
+			String line;
+			String[] lineSplit;
+			while((line = buffReader.readLine()) != null) {
+				lineSplit = line.split("\\|");
+				options.add(new Option( lineSplit[0], Double.parseDouble(lineSplit[1]), lineSplit[2], Boolean.parseBoolean(lineSplit[3]), Boolean.parseBoolean(lineSplit[4]), Boolean.parseBoolean(lineSplit[5]) ));
+			}
+		} catch (Exception ex) {
+			System.out.printf("Error occurred, check your %s file.\n", csvName);
+			System.out.println(ex);
+		}
+		System.out.println("Options loaded successfully: " + csvName);
+		return options;
+	} // getOptionsFromFile
 
+	public static ArrayList<String> getProductNames(String csvName) {
+		ArrayList<String> names = new ArrayList<>();
+		try {
+			FileReader fileReader = new FileReader(csvName);
+			BufferedReader buffReader = new BufferedReader(fileReader);
+			String line;
+			String[] lineSplit;
+			while((line = buffReader.readLine()) != null) {
+				lineSplit = line.split("\\|");
+				names.addAll(Arrays.asList(lineSplit));
+			}
+		} catch (Exception ex) {
+			System.out.printf("Error occurred, check your %s file.\n", csvName);
+			System.out.println(ex);
+		}
+		System.out.println("Names loaded successfully: " + csvName);
+		return names;
+	}//getProductNames
 
+	public static boolean csvExists(String name) {
+		File nameFile;
+		if( (nameFile = new File(name + ".csv")).isFile() ) {
+			System.out.println("Option file found: " + name + ".csv");
+			return true;
+		}
+		return false;
+	}
 
 	//all from before rewrite
 /*
