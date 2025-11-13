@@ -1,6 +1,5 @@
 package com.pluralsight;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class UserInterface {
@@ -12,17 +11,33 @@ public class UserInterface {
 	//I feel like there's some sorta table data structure that I could use here but i am
 	//too lazy and pressed for time to figure it out
 	public static void displayWindows(ArrayList<Window> winRow) {
-		ArrayList<StringBuilder> fullDisplayLines = new ArrayList<>();
-		for (int i = 0; i < winRow.getFirst().getHeight(); i++) {
+		ArrayList<StringBuilder> fullDisplayLinesToPrint = new ArrayList<>();
+		/*
+		for (int i = 0; i < winRow.getFirst().getHeight()+1; i++) {
 			fullDisplayLines.add(new StringBuilder());
 		}
+		*/
 		for (Window w : winRow) {
-			ArrayList<String> winRows = w.getRows();
-			for (int i = 0; i < w.getHeight(); i++) {
-				fullDisplayLines.get(i).append(winRows.get(i));
+			ArrayList<String> rowsToPrint = w.getRows();
+
+			if (fullDisplayLinesToPrint.isEmpty()) {
+				fullDisplayLinesToPrint = new ArrayList<>(rowsToPrint.size());
+				for (int i = 0; i < rowsToPrint.size(); i++) {
+					fullDisplayLinesToPrint.add(new StringBuilder());
+				}
 			}
+
+			for (int i = 0; i < rowsToPrint.size(); i++) {
+//				if (fullDisplayLinesToPrint.get(i).isEmpty()) {
+//					fullDisplayLinesToPrint.add( new StringBuilder().append(rowsToPrint.get(i)) );
+//				}
+				fullDisplayLinesToPrint.get(i).append(rowsToPrint.get(i));
+			}
+
 		}
-		fullDisplayLines.forEach(stringBuilder -> System.out.println(stringBuilder.toString()));
+
+		fullDisplayLinesToPrint.forEach(stringBuilder -> System.out.println(stringBuilder.toString()));
+
 	}
 
 	public static ArrayList<Window> getTopWinRow() {

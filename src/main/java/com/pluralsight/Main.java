@@ -9,8 +9,12 @@ public class Main {
 		Menu menu = new Menu();
 		menu.initProducts();
 
-		UserInterface.addTopWindow(new Window(100, 100));
-		UserInterface.addTopWindow(new Window(100, 100));
+		ConsoleHelper.consoleClear();
+
+		UserInterface.addTopWindow(new Window(50, 16));
+		UserInterface.addTopWindow(new Window(50, 16));
+
+		UserInterface.topWinRow.get(0).printToNextRow("Hello world!");
 
 		UserInterface.displayWindows(UserInterface.topWinRow);
 
