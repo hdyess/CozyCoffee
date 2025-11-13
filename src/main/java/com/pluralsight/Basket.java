@@ -23,7 +23,7 @@ public class Basket {
 
 	public double getTotalPrice() {
 		double totalBasketPrice = 0.00;
-		for (Item i : inBasket) {
+		for (Product i : inBasket) {
 			totalBasketPrice += i.getTotalPrice();
 		}
 		return totalBasketPrice;

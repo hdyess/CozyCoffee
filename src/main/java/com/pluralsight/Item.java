@@ -1,34 +1,30 @@
 package com.pluralsight;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-
-public class Item {
+public abstract class Item {
 
 	String name;
-	double basePrice;
-	LinkedHashMap<String, Item> availableOptions;
-	LinkedHashMap<String, Item> addedOptions;
-
 
 	public Item(String name) {
 		this.name = name;
-		this.basePrice = 0.00;
-		this.availableOptions = new LinkedHashMap<>();
-		this.addedOptions = new LinkedHashMap<>();
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	//this is basically the whole class before rewrite
+	/*
 //	public Item(String name, Double basePrice) {
 //		this.name = name;
 //		this.basePrice = basePrice;
 //		this.availableOptions = new LinkedHashMap<>();
 //		this.addedOptions = new LinkedHashMap<>();
+
 //	}
+//	LinkedHashMap<String, Item> availableOptions;
+//	LinkedHashMap<String, Item> addedOptions;
 
 
-	public String getName() {
-		return name;
-	}
 
 	public double getBasePrice() {
 		return basePrice;
@@ -71,7 +67,6 @@ public class Item {
 		return addedOptions;
 	}
 
-
 	public double getTotalPrice() {
 		if (addedOptions.isEmpty()) {
 			return basePrice;
@@ -84,5 +79,6 @@ public class Item {
 
 		return returnPrice;
 	}
+*/
 
 }//Item

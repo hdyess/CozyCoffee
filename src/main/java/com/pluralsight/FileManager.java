@@ -9,6 +9,10 @@ import java.util.LinkedHashMap;
 public class FileManager {
 
 
+
+
+	//all from before rewrite
+/*
 	//most of this is just to avoid hard coding the items and prices. BAD IDEA
 
 	public static void loadItemsToMenu(String csvName) {
@@ -108,6 +112,8 @@ public class FileManager {
 //		return optionTree;
 //	}
 
+
+*/
 
 
 }
