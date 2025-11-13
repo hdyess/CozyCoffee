@@ -1,10 +1,13 @@
 package com.pluralsight;
 
 import java.io.*;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 
 public class FileManager {
+
 
 	//most of this is just to avoid hard coding the items and prices. BAD IDEA
 
@@ -32,19 +35,26 @@ public class FileManager {
 				if ( (priceFile = new File(lineSplit[0] + ".csv")).isFile() ) {
 					System.out.printf("Price info for %s found.\n", lineSplit[0]);
 					prices = loadPrices(lineSplit[0] + ".csv");
+					System.out.println("Prices loaded successfully.");
 				} else {
 					System.out.printf("No price info found for %s.\n", lineSplit[0]);
 				}
 
 				for (int j = 1; j < lineSplit.length; j++) {
+					newMenuItem.addAvailableOption(lineSplit[j]);
 					//todo:this condition is checked every single loop which is
 					//unnecessary but who cares at ths point
-					if (!prices.isEmpty()) {
-						newMenuItem.addAvailableOption(lineSplit[j]);
-					}
-					newMenuItem.getAvailableOptions().get(lineSplit[j]).setBasePrice(prices.get(j));
+//					if (!prices.isEmpty()) {
+//						System.out.println(j);
+//						newMenuItem.getAvailableOptions().get(lineSplit[j]).setBasePrice(prices.get(j-1));
+//					}
+				}
+
+				if (!prices.isEmpty()) {
 
 				}
+
+
 
 				Menu.addToMenuItems(newMenuItem);
 				System.out.println("Menu item loaded: " + newMenuItem.getName());
@@ -60,10 +70,11 @@ public class FileManager {
 
 	public static ArrayList<Double> loadPrices(String csvName) {
 
+		ArrayList<Double> itemPriceList = new ArrayList<>();
 		try {
 			FileReader fileReader = new FileReader(csvName);
-			System.out.println("File \"" + csvName + "\" successfully opened.");
 			BufferedReader buffReader = new BufferedReader(fileReader);
+			System.out.println("File \"" + csvName + "\" successfully opened.");
 			String line;
 			//size|size5|size8|size12|size16
 			//milk|milkWhole|milkOat|milkAlmond
@@ -72,18 +83,32 @@ public class FileManager {
 			//latte|size|milk|temp|extrashots
 
 			while ((line = buffReader.readLine()) != null) {
-				ArrayList<Double> itemPriceList = new ArrayList<>();
-				Menu.addToAllItems(new Item(line.split("\\|")[0]));
-				System.out.println("Item loaded: " + line.split("\\|")[0]);
+				for (String s : line.split("\\|")) {
+					itemPriceList.add(Double.parseDouble(s));
+				}
 			}
+
+
+			return itemPriceList;
 
 		} catch (Exception ex) {
 			System.out.printf("Error occurred, check your %s file.\n", csvName);
 			System.out.println(ex);
 		}
-
-
+		return itemPriceList;
 	}
+
+//	private static ArrayList<Item> getFullOptionTree(Item i) {
+//		ArrayList<Item> optionTree = new ArrayList<>();
+//		if (!i.getAvailableOptions().isEmpty()) {
+//			for (Item i1 : i.getAvailableOptions().values()) {
+//				optionTree.addAll(getFullOptionTree(i1));
+//			}
+//		}
+//		return optionTree;
+//	}
+
+
 
 }
 

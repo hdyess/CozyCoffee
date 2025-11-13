@@ -71,6 +71,7 @@ public class Item {
 		return addedOptions;
 	}
 
+
 	public double getTotalPrice() {
 		if (addedOptions.isEmpty()) {
 			return basePrice;
