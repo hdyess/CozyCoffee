@@ -19,6 +19,7 @@ public class UserInterface {
 		*/
 		for (Window w : winRow) {
 			ArrayList<String> rowsToPrint = w.getRows();
+			System.out.println(rowsToPrint.size());
 
 			if (fullDisplayLinesToPrint.isEmpty()) {
 				fullDisplayLinesToPrint = new ArrayList<>(rowsToPrint.size());
@@ -28,9 +29,6 @@ public class UserInterface {
 			}
 
 			for (int i = 0; i < rowsToPrint.size(); i++) {
-//				if (fullDisplayLinesToPrint.get(i).isEmpty()) {
-//					fullDisplayLinesToPrint.add( new StringBuilder().append(rowsToPrint.get(i)) );
-//				}
 				fullDisplayLinesToPrint.get(i).append(rowsToPrint.get(i));
 			}
 

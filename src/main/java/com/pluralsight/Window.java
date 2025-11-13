@@ -26,8 +26,8 @@ public class Window {
 	}
 
 	public ArrayList<String> getRows() {
-		if(rows.size()<this.height-1) {
-			for (int i = 0; i < this.height-1; i++) {
+		if(rows.size()<this.height) {
+			for (int i = 0; i < this.height-2; i++) {
 				printToNextRow("");
 			}
 		}
