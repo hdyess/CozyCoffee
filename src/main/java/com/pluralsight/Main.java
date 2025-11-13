@@ -11,22 +11,49 @@ public class Main {
 
 		ConsoleHelper.consoleClear();
 
-		UserInterface.addTopWindow(new Window(50, 6));
-		UserInterface.addTopWindow(new Window(50, 6));
+		UserInterface.addTopWindow(new Window(50, 10));
+		UserInterface.addTopWindow(new Window(50, 10));
 
-		UserInterface.topWinRow.get(0).printToNextRow("Hello world!");
-		UserInterface.topWinRow.get(1).printToNextRow("Hello world!");
+		UserInterface.getTopWinRow().get(0).printToNextRow("Hello world!");
+		UserInterface.getTopWinRow().get(0).printToNextRow("Hello world!");
+		UserInterface.getTopWinRow().get(0).printToNextRow("Hello world!");
+		UserInterface.getTopWinRow().get(0).printToNextRow("Hello world!");
+		UserInterface.getTopWinRow().get(0).printToNextRow("Hello world!");
+		UserInterface.getTopWinRow().get(0).printToNextRow("Hello world!");
+		UserInterface.getTopWinRow().get(0).printToNextRow("Hello world!");
+		UserInterface.getTopWinRow().get(0).printToNextRow("Hello world!");
+		UserInterface.getTopWinRow().get(0).printToNextRow("Hello world!");
 
-		UserInterface.displayWindows(UserInterface.topWinRow);
+		UserInterface.getTopWinRow().get(1).printToNextRow("Hello world!");
+		UserInterface.getTopWinRow().get(1).printToNextRow("Hello world!");
 
-		UserInterface.topWinRow.get(0).clearRows();
-		UserInterface.topWinRow.get(1).clearRows();
 
-		ConsoleHelper.consoleClear();
+		UserInterface.displayWindows(UserInterface.getTopWinRow());
 
-		UserInterface.displayWindows(UserInterface.topWinRow);
+		UserInterface.getTopWinRow().get(0).clearRows();
+		UserInterface.getTopWinRow().get(1).clearRows();
 
-		//menu.getProduct("latte").getAvailableOptions().forEach(option -> System.out.println(option.getName()));
+		UserInterface.displayWindows(UserInterface.getTopWinRow());
+
+		UserInterface.getTopWinRow().get(0).clearRows();
+		UserInterface.getTopWinRow().get(1).clearRows();
+
+		UserInterface.getTopWinRow().get(0).printToNextRow("Hello world!");
+		UserInterface.getTopWinRow().get(0).printToNextRow("Hello world!");
+
+		UserInterface.displayWindows(UserInterface.getTopWinRow());
+
+		UserInterface.getTopWinRow().get(0).clearRows();
+		UserInterface.getTopWinRow().get(1).clearRows();
+
+		UserInterface.getTopWinRow().get(0).printToNextRow("Hello world!");
+		UserInterface.getTopWinRow().get(0).printToNextRow("Hello world!");
+
+		UserInterface.displayWindows(UserInterface.getTopWinRow());
+
+		UserInterface.getTopWinRow().get(0).clearRows();
+		UserInterface.getTopWinRow().get(1).clearRows();
+
 
 
 
