@@ -17,7 +17,7 @@ public class MenuWindow extends Window{
 		this.printToNextRow("All items: ");
 
 		for(Product p : menu.getProductMap().values()) {
-			this.printToNextRow( String.format( "%-12s - " + p.getTotalPrice(), p.getName() ) );
+			this.printToNextRow( p.getName());
 		}
 
 	}

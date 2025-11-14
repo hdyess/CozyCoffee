@@ -18,10 +18,10 @@ public class WindowHandler {
 	public static HomeWindow homeWindow = new HomeWindow(60, topRowHeight);
 	public static MenuWindow menuWindow = new MenuWindow(60, topRowHeight);
 	public static AddToBasketWindow addToBasketWindow = new AddToBasketWindow(60, topRowHeight);
-	public static CheckoutWindow checkoutWindow = new CheckoutWindow(70, topRowHeight);
+	public static CheckoutWindow checkoutWindow = new CheckoutWindow(60, topRowHeight);
 
 	public static OrderWindow orderWindow = new OrderWindow(50, topRowHeight);
-	public static Window musicWindow = new Window(40, 2);
+	public static Window musicWindow = new Window(90, 2);
 
 	public static String nextWindowName = "home";
 
@@ -84,6 +84,10 @@ public class WindowHandler {
 
 
 	public static void initWindows() {
+
+		musicWindow.printToNextRow("Now playing: " + Main.musicPath);
+
+
 		while (nextWindowName != "exit") {
 			ConsoleHelper.consoleClear();
 			switch (nextWindowName) {
@@ -196,7 +200,7 @@ public class WindowHandler {
 						case 2:
 							basket = new Basket();
 							break;
-						case default:
+						case 3:
 							break;
 					}
 

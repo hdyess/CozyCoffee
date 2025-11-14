@@ -22,7 +22,7 @@ public class CheckoutWindow extends Window{
 		for (Product p : WindowHandler.basket.getInBasket().values()) {
 			this.printToNextRow(p.getName() + " - " + p.getTotalPrice());
 			for(Option o : p.getAddedOptions()){
-				optionsLineBuilder.append(o.name + " - " + o.getPrice());
+				optionsLineBuilder.append(o.name + " - " + o.getPrice() + "|");
 			}
 			this.printToNextRow(optionsLineBuilder.toString());
 		}
@@ -35,7 +35,7 @@ public class CheckoutWindow extends Window{
 			LocalDateTime time = LocalDateTime.now();
 			StringBuilder stringBuilder = new StringBuilder();
 			stringBuilder.append(time.getYear() + ":");
-			stringBuilder.append(time.getMonth() + ":");
+			stringBuilder.append(time.getMonthValue() + ":");
 			stringBuilder.append(time.getDayOfMonth() + ":");
 			stringBuilder.append(time.getHour() + ":");
 			stringBuilder.append(time.getMinute() + ":");
@@ -65,7 +65,7 @@ public class CheckoutWindow extends Window{
 				double subtotal = WindowHandler.basket.getTotalPrice();
 				buffWriter.write("Subtotal: " + subtotal);
 				buffWriter.newLine();
-				buffWriter.write("Total: " + subtotal*1.07);
+				buffWriter.write( String.format("Total: %.2f", subtotal*1.07 ) );
 				buffWriter.close();
 			}
 
