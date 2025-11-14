@@ -17,7 +17,7 @@ public class WindowHandler {
 	public static MenuWindow menuWindow = new MenuWindow(70, topRowHeight);
 	public static AddToBasketWindow addToBasketWindow = new AddToBasketWindow(70, topRowHeight);
 
-	public static Window orderWindow = new Window(50, topRowHeight);
+	public static OrderWindow orderWindow = new OrderWindow(50, topRowHeight);
 	public static Window musicWindow = new Window(120, 2);
 
 	public static String nextWindowName = "home";
@@ -85,11 +85,11 @@ public class WindowHandler {
 			ConsoleHelper.consoleClear();
 			switch (nextWindowName) {
 				case "home":
+					orderWindow.displayOrderWindow();
 					homeWindow.displayHomeWindow();
 
 					topWinRow = new ArrayList<>();
 					bottomWinRow = new ArrayList<>();
-
 					topWinRow.add(homeWindow);
 					topWinRow.add(orderWindow);
 					bottomWinRow.add(musicWindow);
@@ -102,6 +102,8 @@ public class WindowHandler {
 					break;
 				case "menu":
 					menuWindow.displayMenuWindow();
+					orderWindow.displayOrderWindow();
+
 
 					topWinRow = new ArrayList<>();
 					bottomWinRow = new ArrayList<>();
@@ -132,7 +134,8 @@ public class WindowHandler {
 					break;
 				case "addToBasket":
 					addToBasketWindow.displayAddToBasketWindow(productChoice);
-					System.out.println("gamer");
+					orderWindow.displayOrderWindow();
+
 
 
 					topWinRow = new ArrayList<>();
@@ -162,7 +165,6 @@ public class WindowHandler {
 			}
 
 		}
-
 
 
 	}

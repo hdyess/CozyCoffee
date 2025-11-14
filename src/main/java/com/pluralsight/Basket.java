@@ -15,14 +15,14 @@ public class Basket {
 
 
 	public void addProduct(Product product) {
-		inBasket.put(product.getName(), product);
+		this.inBasket.put(product.getName(), product);
 	}
 	public void removeProduct(Product product) {
-		inBasket.remove(product.getName(), product);
+		this.inBasket.remove(product.getName(), product);
 	}
 
 	public LinkedHashMap<String, Product> getInBasket() {
-		return inBasket;
+		return this.inBasket;
 	}
 
 	public double getTotalPrice() {
