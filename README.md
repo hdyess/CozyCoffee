@@ -17,6 +17,10 @@ Images:
 <img width="2433" height="1209" alt="image" src="https://github.com/user-attachments/assets/c9d40e71-a40d-4b4d-9d3a-da972e3de8bb" />
 <img width="2439" height="1236" alt="image" src="https://github.com/user-attachments/assets/266350e8-99f6-4aee-961e-9f8b34aeefea" />
 
+Diagram: 
+
+<img width="1581" height="1185" alt="image" src="https://github.com/user-attachments/assets/b0ca0a1b-5f30-40ad-beb6-d807c080f677" />
+
 
 Perhaps my favorite piece of code would be the CLI menu system!
 It can be extended to handle almost any (reasonable) nuber of tiled windows of almost any (reasonable) size, and they can all be displayed to individually, line by line. 
