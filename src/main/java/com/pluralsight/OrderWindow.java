@@ -10,7 +10,13 @@ public class OrderWindow extends Window{
 		this.printToNextRow( "Running total: " + WindowHandler.basket.getTotalPrice() );
 		this.printToNextRow("Basket: ");
 		for (Product p : WindowHandler.basket.getInBasket().values()) {
+			this.printToNextRow(p.getName() + " - " + p.getTotalPrice());
+
 			System.out.println(p);
+			System.out.println(p.getTotalPrice());
+			for (Option o : p.getAddedOptions()) {
+				System.out.println(o.price);
+			}
 		}
 	}
 

@@ -57,6 +57,8 @@ public class AddToBasketWindow extends Window{
 				//yes i know it says numberable and not numerable
 				if (o.isNumberable()) {
 					o.setCount(ConsoleHelper.promptForInt("How many " + o.getName() + " do you want to add?"));
+				} else {
+					o.setCount(1);
 				}
 				if (o.getCategory().equalsIgnoreCase("size")) {
 					size = o.getName();
@@ -105,7 +107,8 @@ public class AddToBasketWindow extends Window{
 
 		}
 		if(errorText.isEmpty()) {
-			WindowHandler.basket.addProduct(product);
+			WindowHandler.basket.inBasket.put(product.getName(), product);
+			//WindowHandler.basket.addProduct(product);
 			this.clearRows();
 			this.printToNextRow("Item added successfully, press enter to continue.");
 			return "menu";

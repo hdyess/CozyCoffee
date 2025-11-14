@@ -6,7 +6,7 @@ import java.util.LinkedHashMap;
 
 public class Basket {
 
-	LinkedHashMap<String, Product> inBasket;
+	public LinkedHashMap<String, Product> inBasket;
 
 
 	public Basket() {
