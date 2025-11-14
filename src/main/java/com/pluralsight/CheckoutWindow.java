@@ -33,20 +33,42 @@ public class CheckoutWindow extends Window{
 	public void printReceipt()	{
 		try {
 			LocalDateTime time = LocalDateTime.now();
-			StringBuilder title = new StringBuilder();
-			title.append(time.getYear() + ":");
-			title.append(time.getMonth() + ":");
-			title.append(time.getDayOfMonth() + ":");
-			title.append(time.getHour() + ":");
-			title.append(time.getMinute() + ":");
-			title.append(time.getSecond());
-			String path = ConsoleHelper.promptForString("Enter path for receipt file: "); 
+			StringBuilder stringBuilder = new StringBuilder();
+			stringBuilder.append(time.getYear() + ":");
+			stringBuilder.append(time.getMonth() + ":");
+			stringBuilder.append(time.getDayOfMonth() + ":");
+			stringBuilder.append(time.getHour() + ":");
+			stringBuilder.append(time.getMinute() + ":");
+			stringBuilder.append(time.getSecond());
+			String path = ConsoleHelper.promptForString("Enter path for receipt file: ");
 
-
-			File file = new File( path + title.toString() + ".txt");
-
+			File file = new File( path + stringBuilder.toString() + ".txt");
 			FileWriter fileWriter = new FileWriter(file);
 			BufferedWriter buffWriter = new BufferedWriter(fileWriter);
+
+			buffWriter.write("<3~~~ Cozy Coffee Corner ~~~<3");
+			buffWriter.newLine();
+			buffWriter.write("Thank you for shopping!!!");
+			buffWriter.newLine();
+			buffWriter.newLine();
+
+			for (Product p : WindowHandler.basket.getInBasket().values()) {
+				stringBuilder = new StringBuilder();
+				buffWriter.write(p.getName() + " - " + p.getTotalPrice());
+				buffWriter.newLine();
+				for(Option o : p.getAddedOptions()){
+					stringBuilder.append(o.name + " - " + o.getPrice());
+				}
+				buffWriter.write(stringBuilder.toString());
+				buffWriter.newLine();
+				buffWriter.newLine();
+				double subtotal = WindowHandler.basket.getTotalPrice();
+				buffWriter.write("Subtotal: " + subtotal);
+				buffWriter.newLine();
+				buffWriter.write("Total: " + subtotal*1.07);
+				buffWriter.close();
+			}
+
 
 
 		} catch(Exception ex) {
