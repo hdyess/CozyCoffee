@@ -41,7 +41,7 @@ public class Product extends Item{
 	public void addOption(String name) {
 		for (Option o : availableOptions) {
 			if (o.getName().equalsIgnoreCase(name)) {
-				availableOptions.add(o);
+				addedOptions.add(o);
 				break;
 			}
 		}

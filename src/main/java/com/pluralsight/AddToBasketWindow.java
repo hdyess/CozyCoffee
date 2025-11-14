@@ -30,16 +30,29 @@ public class AddToBasketWindow extends Window{
 		String size = "5oz";
 
 		try {
+			Arrays.stream(choices).forEach(System.out::println);
+			for (Option o : product.getAvailableOptions()) {
+				System.out.println(o.getName() + o.getCategory());
+			}
 			for(String s : choices) {
 				product.addOption(s);
 			}
+//			System.out.println("Cats:");
+//			for(Option o : product.getAddedOptions()){
+//
+//				System.out.println();
+//			}
 			//this all verifies item for addition to basket
 			for(Option o : product.getAddedOptions()) {
+//				System.out.println(categories.contains(o.getCategory()));
 				if (o.isExclusive() && categories.contains(o.getCategory())){
 					errorText.add("Can only have one product of category: " + o.getCategory() + ". ");
 				}
+//				System.out.println(o.getCategory());
+//				System.out.println("gamer");
 				categories.add(o.getCategory());
 			}
+			System.out.println(categories);
 			for(Option o : product.getAddedOptions()) {
 				//yes i know it says numberable and not numerable
 				if (o.isNumberable()) {
@@ -49,6 +62,10 @@ public class AddToBasketWindow extends Window{
 					size = o.getName();
 				}
 			}
+//			System.out.println("Categories: ");
+//			for (String s : categories) {
+//				System.out.println(s);
+//			}
 			for(Option o : product.getAvailableOptions()) {
 				if(o.isRequired()&&!categories.contains(o.getCategory())) {
 					errorText.add("Must have at least one product of category: " + o.getCategory() + ". ");
