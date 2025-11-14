@@ -65,5 +65,19 @@ public class Product extends Item{
 	}
 
 
+	@Override
+	public String toString() {
+		StringBuilder returnStringBuilder = new StringBuilder();
+		returnStringBuilder.append(this.name + "|");
+		for (Option o : this.availableOptions) {
+			returnStringBuilder.append(o.price + ", ");
+			returnStringBuilder.append(o.name + ", ");
+			returnStringBuilder.append(o.category);
+			returnStringBuilder.append('|');
+		}
+		return returnStringBuilder.toString();
+	}
+
+
 
 }

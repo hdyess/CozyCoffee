@@ -4,15 +4,18 @@ import java.util.ArrayList;
 
 public class WindowHandler {
 
+	private static int topRowHeight = 25;
+
 	private static Product productChoice;
 
 	public static ArrayList<Window> topWinRow = new ArrayList<>();
 	public static ArrayList<Window> bottomWinRow = new ArrayList<>();
 
-	public static HomeWindow homeWindow = new HomeWindow(70, 20);
-	public static MenuWindow menuWindow = new MenuWindow(70, 20);
+	public static HomeWindow homeWindow = new HomeWindow(70, topRowHeight);
+	public static MenuWindow menuWindow = new MenuWindow(70, topRowHeight);
+	public static AddToBasketWindow addToBasketWindow = new AddToBasketWindow(70, topRowHeight);
 
-	public static Window orderWindow = new Window(50, 20);
+	public static Window orderWindow = new Window(50, topRowHeight);
 	public static Window musicWindow = new Window(120, 2);
 
 	public static String nextWindowName = "home";
@@ -114,19 +117,42 @@ public class WindowHandler {
 						if(choice.equalsIgnoreCase(s)) {
 							productChoice = MenuWindow.menu.getProduct(s);
 							nextWindowName = "addToBasket";
+							System.out.println(productChoice.getName());
 							break;
 						}
 					}
-					nextWindowName = "home";
+
+					if(!nextWindowName.equalsIgnoreCase("addToBasket")) {
+						nextWindowName = "home";
+						break;
+					}
 					ConsoleHelper.consoleClear();
 					break;
 				case "addToBasket":
-								
+					addToBasketWindow.displayAddToBasketWindow(productChoice);
+					System.out.println("gamer");
 
 
+					topWinRow = new ArrayList<>();
+					bottomWinRow = new ArrayList<>();
 
+					topWinRow.add(addToBasketWindow);
+					topWinRow.add(orderWindow);
+					bottomWinRow.add(musicWindow);
 
+					displayWindows(topWinRow);
+					displayWindows(bottomWinRow);
 
+					addToBasketWindow.runAddToBasketWindowLogic(productChoice);
+
+					ConsoleHelper.consoleClear();
+
+					displayWindows(topWinRow);
+					displayWindows(bottomWinRow);
+
+					ConsoleHelper.promptForString("");
+
+					nextWindowName = "menu";
 					break;
 				default:
 					nextWindowName = "home";

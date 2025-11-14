@@ -7,11 +7,36 @@ public class AddToBasketWindow extends Window{
 		super(width, height);
 	}
 	public void displayAddToBasketWindow(Product product) {
-		this.printToNextRow(product.getName());
+		this.clearRows();
+
+		for (String s : product.toString().split("\\|")) {
+			this.printToNextRow(s);
+		}
+
+
 	}
 
 	public String runAddToBasketWindowLogic(Product product) {
-		return ConsoleHelper.promptForString("Input item name to add item, or any other input to return: ");
+
+		Product productForBasket = product;
+
+		String[] choices = ConsoleHelper.promptForString("Input the options you want for your item: ").split(" ");
+		System.out.println(choices);
+
+
+
+
+
+
+
+
+
+
+		this.clearRows();
+		this.printToNextRow("Item added successfully, press enter to continue.");
+
+
+		return "menu";
 	}
 
 }

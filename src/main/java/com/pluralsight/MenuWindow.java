@@ -8,9 +8,11 @@ public class MenuWindow extends Window{
 	public MenuWindow(int width, int height) {
 		super(width, height);
 	}
+
 	public void displayMenuWindow() {
 		menu = new Menu();
 		menu.initProducts();
+		ConsoleHelper.consoleClear();
 
 		this.printToNextRow("All items: ");
 
