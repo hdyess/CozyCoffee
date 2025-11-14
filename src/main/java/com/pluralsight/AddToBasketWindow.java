@@ -100,6 +100,18 @@ public class AddToBasketWindow extends Window{
 					}
 				}
 			}
+
+			HashMap<String, Double> itemsWithBasePrice = new HashMap<String, Double>();
+			itemsWithBasePrice.put("croissant", 3.99);
+			itemsWithBasePrice.put("macaron", 4.75);
+			itemsWithBasePrice.put("muffin", 4.08);
+			itemsWithBasePrice.put("cookie", 2.83);
+			itemsWithBasePrice.put("baggedcoffee", 22.49);
+			if(itemsWithBasePrice.containsKey(product.name)) {
+				product.setBasePrice(itemsWithBasePrice.get(product.name));
+			}
+
+
 		} catch (Exception ex) {
 			System.out.println(ex);
 			this.clearRows();

@@ -54,6 +54,10 @@ public class Product extends Item{
 		this.count += numberToChangeBy;
 	}
 
+	public void setBasePrice(double price) {
+		this.basePrice = price;
+	}
+
 	public double getTotalPrice() {
 		double returnPrice = basePrice;
 		if (!addedOptions.isEmpty()) {
