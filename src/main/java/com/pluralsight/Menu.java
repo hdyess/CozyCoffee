@@ -8,7 +8,6 @@ public class Menu {
 
 	LinkedHashMap<String, Product> productMap;
 
-
 	public Menu() {}
 
 
@@ -30,6 +29,10 @@ public class Menu {
 		}
 	}
 
+	public LinkedHashMap<String, Product> getProductMap() {
+		return productMap;
+	}
+
 	public Set<String> getProductNames() {
 		return productMap.keySet();
 	}
@@ -37,6 +40,8 @@ public class Menu {
 	public Product getProduct(String productName) {
 		return productMap.get(productName);
 	}
+
+
 
 
 

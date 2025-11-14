@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class WindowHandler {
 
+	private static Product productChoice;
+
 	public static ArrayList<Window> topWinRow = new ArrayList<>();
 	public static ArrayList<Window> bottomWinRow = new ArrayList<>();
 
@@ -106,8 +108,25 @@ public class WindowHandler {
 					displayWindows(topWinRow);
 					displayWindows(bottomWinRow);
 
-					nextWindowName = menuWindow.runMenuLogic();
+					String choice = menuWindow.runMenuLogic();
+
+					for(String s : MenuWindow.menu.getProductMap().keySet()) {
+						if(choice.equalsIgnoreCase(s)) {
+							productChoice = MenuWindow.menu.getProduct(s);
+							nextWindowName = "addToBasket";
+							break;
+						}
+					}
+					nextWindowName = "home";
 					ConsoleHelper.consoleClear();
+					break;
+				case "addToBasket":
+								
+
+
+
+
+
 					break;
 				default:
 					nextWindowName = "home";
