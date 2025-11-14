@@ -5,6 +5,7 @@ public class OrderWindow extends Window{
 	public OrderWindow(int width, int height) {
 		super(width, height);
 	}
+
 	public void displayOrderWindow() {
 		this.clearRows();
 		this.printToNextRow( "Running total: " + WindowHandler.basket.getTotalPrice() );

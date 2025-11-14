@@ -26,7 +26,4 @@ public class MenuWindow extends Window{
 		return ConsoleHelper.promptForString("Input item name to add item, or any other input to return: ");
 	}
 
-
-
-
 }
