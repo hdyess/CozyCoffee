@@ -9,6 +9,6 @@ public class Main {
 
 		//handles all ui
 		WindowHandler.initWindows();
-		
+
 	}
 }

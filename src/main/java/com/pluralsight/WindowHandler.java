@@ -8,6 +8,8 @@ public class WindowHandler {
 	public static ArrayList<Window> bottomWinRow = new ArrayList<>();
 
 	public static HomeWindow homeWindow = new HomeWindow(70, 20);
+	public static MenuWindow menuWindow = new MenuWindow(70, 20);
+
 	public static Window orderWindow = new Window(50, 20);
 	public static Window musicWindow = new Window(120, 2);
 
@@ -73,9 +75,10 @@ public class WindowHandler {
 
 	public static void initWindows() {
 		while (nextWindowName != "exit") {
+			ConsoleHelper.consoleClear();
 			switch (nextWindowName) {
 				case "home":
-					homeWindow.displayHome();
+					homeWindow.displayHomeWindow();
 
 					topWinRow = new ArrayList<>();
 					bottomWinRow = new ArrayList<>();
@@ -87,7 +90,24 @@ public class WindowHandler {
 					displayWindows(topWinRow);
 					displayWindows(bottomWinRow);
 
-					nextWindowName = homeWindow.runHomePrompt();
+					nextWindowName = homeWindow.runHomeLogic();
+					ConsoleHelper.consoleClear();
+					break;
+				case "menu":
+					menuWindow.displayMenuWindow();
+
+					topWinRow = new ArrayList<>();
+					bottomWinRow = new ArrayList<>();
+
+					topWinRow.add(menuWindow);
+					topWinRow.add(orderWindow);
+					bottomWinRow.add(musicWindow);
+
+					displayWindows(topWinRow);
+					displayWindows(bottomWinRow);
+
+					nextWindowName = menuWindow.runMenuLogic();
+					ConsoleHelper.consoleClear();
 					break;
 				default:
 					nextWindowName = "home";
