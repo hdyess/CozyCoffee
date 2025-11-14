@@ -35,6 +35,14 @@ public class Option extends Item{
 		return numberable;
 	}
 
+	public boolean isExclusive() {
+		return exclusive;
+	}
+
+	public boolean isRequired() {
+		return required;
+	}
+
 	public int getCount() {
 		return count;
 	}

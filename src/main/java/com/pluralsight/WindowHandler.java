@@ -8,6 +8,8 @@ public class WindowHandler {
 
 	private static Product productChoice;
 
+	public static Basket basket = new Basket();
+
 	public static ArrayList<Window> topWinRow = new ArrayList<>();
 	public static ArrayList<Window> bottomWinRow = new ArrayList<>();
 
