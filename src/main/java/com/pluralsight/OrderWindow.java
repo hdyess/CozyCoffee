@@ -11,19 +11,19 @@ public class OrderWindow extends Window{
 		this.printToNextRow("Basket: ");
 		for (Product p : WindowHandler.basket.getInBasket().values()) {
 			this.printToNextRow(p.getName() + " - " + p.getTotalPrice());
-
-			System.out.println(p);
-			System.out.println(p.getTotalPrice());
 			for (Option o : p.getAddedOptions()) {
 				System.out.println(o.price);
 			}
 		}
 	}
 
-	public String runOrderWindowLogic()	{
-		String[] choices = {"menu", "checkout", "exit"};
-		return choices[ConsoleHelper.promptForInt("Input choice:")-1];
+	public void displayCheckoutInfo() {
+		this.clearRows();
+		this.printToNextRow("1. Complete checkout, print receipt.");
+		this.printToNextRow("2. Complete checkout, no receipt.");
+		this.printToNextRow("3. Return home.");
 	}
+
 
 
 }

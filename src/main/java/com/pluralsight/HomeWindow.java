@@ -9,7 +9,7 @@ public class HomeWindow extends Window {
 		super(width, height);
 	}
 	public void displayHomeWindow() {
-		this.printToNextRow("Welcome to the Cozy Coffee Corner");
+		this.printToNextRow("<3~~~ Welcome to the Cozy Coffee Corner ~~~<3");
 		this.printToNextRow(String.format("1. View Menu"));
 		this.printToNextRow(String.format("2. Checkout"));
 		this.printToNextRow(String.format("3. Exit POS"));

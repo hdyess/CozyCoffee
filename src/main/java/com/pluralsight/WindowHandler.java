@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 public class WindowHandler {
 
-	private static int topRowHeight = 25;
+
+	//0 encapsulation here, some can probably be fixed
+	private static int topRowHeight = 22;
 
 	private static Product productChoice;
 
@@ -13,12 +15,13 @@ public class WindowHandler {
 	public static ArrayList<Window> topWinRow = new ArrayList<>();
 	public static ArrayList<Window> bottomWinRow = new ArrayList<>();
 
-	public static HomeWindow homeWindow = new HomeWindow(70, topRowHeight);
-	public static MenuWindow menuWindow = new MenuWindow(70, topRowHeight);
-	public static AddToBasketWindow addToBasketWindow = new AddToBasketWindow(70, topRowHeight);
+	public static HomeWindow homeWindow = new HomeWindow(60, topRowHeight);
+	public static MenuWindow menuWindow = new MenuWindow(60, topRowHeight);
+	public static AddToBasketWindow addToBasketWindow = new AddToBasketWindow(60, topRowHeight);
+	public static CheckoutWindow checkoutWindow = new CheckoutWindow(70, topRowHeight);
 
 	public static OrderWindow orderWindow = new OrderWindow(50, topRowHeight);
-	public static Window musicWindow = new Window(120, 2);
+	public static Window musicWindow = new Window(40, 2);
 
 	public static String nextWindowName = "home";
 
@@ -136,8 +139,6 @@ public class WindowHandler {
 					addToBasketWindow.displayAddToBasketWindow(productChoice);
 					orderWindow.displayOrderWindow();
 
-
-
 					topWinRow = new ArrayList<>();
 					bottomWinRow = new ArrayList<>();
 
@@ -158,6 +159,48 @@ public class WindowHandler {
 					ConsoleHelper.promptForString("");
 
 					nextWindowName = "menu";
+					break;
+				case "checkout":
+					checkoutWindow.displayCheckoutWindow();
+					orderWindow.displayCheckoutInfo();
+
+					topWinRow = new ArrayList<>();
+					bottomWinRow = new ArrayList<>();
+
+					topWinRow.add(checkoutWindow);
+					topWinRow.add(orderWindow);
+					bottomWinRow.add(musicWindow);
+
+					displayWindows(topWinRow);
+					displayWindows(bottomWinRow);
+
+					int checkoutChoice = ConsoleHelper.promptForInt("Input choice: ");
+
+					switch (checkoutChoice) {
+						case 1:
+							checkoutWindow.printReceipt();
+							orderWindow.clearRows();
+
+							topWinRow = new ArrayList<>();
+							bottomWinRow = new ArrayList<>();
+
+							topWinRow.add(checkoutWindow);
+							topWinRow.add(orderWindow);
+							bottomWinRow.add(musicWindow);
+
+							displayWindows(topWinRow);
+							displayWindows(bottomWinRow);
+
+							basket = new Basket();
+							break;
+						case 2:
+							basket = new Basket();
+							break;
+						case default:
+							break;
+					}
+
+					nextWindowName = "home";
 					break;
 				default:
 					nextWindowName = "home";
